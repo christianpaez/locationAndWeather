@@ -1,0 +1,27 @@
+ <!-- Map -->
+ <section class="content-section bg-dark text-white">
+        <div class="container text-center">
+            <div class="row">
+              <div id="out">
+                  <div *ngIf="mapInfo.locating">
+                      <h3>Locating...</h3>
+                  </div>
+                <div *ngIf="mapInfo.geoNotSupported">
+                    <h3>Geolocation is not supported by your browser</h3>
+                </div>
+                <div *ngIf="mapInfo.positionError">
+                    <h3>Unable to retrieve your location</h3>
+                  </div>
+
+                <div *ngIf="mapInfo.mapReady">
+                    <h3 class="mb-5">Current Location</h3>
+                    <p>Latitude is {{mapInfo.latitude}}° <br>
+                      Longitude is {{mapInfo.longitude}}°</p>
+                </div>
+                  </div>
+              </div>
+              <div id="mapid" class = "row">
+             </div>
+           </div>
+         </section>
+

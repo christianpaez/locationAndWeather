@@ -1,0 +1,12 @@
+<!-- Call to Action -->
+<section id = "start" class="content-section bg-danger text-white">
+        <div class="container text-center">
+          <h2 class="mb-4">Press the button to track your location!</h2>
+                <p class="mb-4">Browser location access required</p>
+          <button class="btn btn-info btn-xl" 
+          (click) = "getLocation()">Track Location</button>
+        </div>
+      </section>
+
+      <app-map [mapInfo]="mapInfo" ></app-map>
+      <app-weather></app-weather>

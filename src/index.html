@@ -2,13 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Location</title>
+  <title>Christian Páez - Location And Weather</title>
   <base href="/">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+   <!-- Bootstrap Core CSS -->
+   <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Custom Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+   <!-- Custom CSS -->
+   <link href="./assets/css/stylish-portfolio.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+ <style type="text/css">
+   #mapid { height: 300px }
+ </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+
 </head>
-<body>
+
+
+<body id="page-top">
+
+
+  <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg  bg-default">
+        <div class="container text-center">
+          <h3 class=""><i class="fas fa-globe-americas"></i> Checkout your current location and weather forecast!
+          <i class="fas fa-globe-americas"></i></h3>
+          </div>
+      </nav>
+      
   <app-root></app-root>
+
+  <!-- Footer -->
+  <footer class="footer text-center bg-danger">
+      <div class="container">
+        <p class="mb-0">Copyright &copy; Christian Páez - 2019</p>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fa fa-sort-up"></i>
+    </a>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="./assets/vendor/jquery/jquery.min.js"></script>
+  <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="./assets/js/stylish-portfolio.min.js"></script>
+  <script>
+      function geoFindMe() {
+    
+        var output = document.getElementById("out");
+    
+    
+      if (!navigator.geolocation){
+        output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+        return;
+      }
+    
+      function success(position) {
+        var latitude  = position.coords.latitude;
+        var longitude = position.coords.longitude;
+    
+        output.innerHTML = '<h3 class="mb-5">Current Location</h3><p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    
+    
+        var mymap = L.map('mapid').setView([latitude, longitude], 15);
+    
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 20,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiY2hyaXN0aWFuMTg5NCIsImEiOiJjank3ZHM2Z2cwczZjM2RvMGxibXQzcng3In0.YUUKGnntHpUmPSdVuFQ-ww'
+    }).addTo(mymap);
+
+
+    var marker = L.marker([latitude, longitude]).addTo(mymap);
+    marker.bindPopup("<b>You Are Here!</b>").openPopup(); 
+    
+       
+      };
+    
+      function error() {
+        output.innerHTML = "Unable to retrieve your location";
+      };
+    
+      output.innerHTML = "<p>Locating…</p>";
+    
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+    </script>
+    
+
 </body>
 </html>
