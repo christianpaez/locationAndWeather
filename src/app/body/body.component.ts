@@ -37,9 +37,11 @@ export class BodyComponent implements OnInit {
           this.mapInfo.latitude = position.coords.latitude;
           this.mapInfo.longitude = position.coords.longitude;     
           this.mapInfo.mapReady = true;
-          this.mapComponent.leafletMap();
+
+          this.mapComponent.leafletMap(position.coords.latitude, position.coords.longitude);
   
-    },(error: PositionError) => {this.mapInfo.positionError = true;
+    },(error: PositionError) => {console.log(error)
+                                this.mapInfo.positionError = true;
                                 this.mapInfo.locating = false;
     });
 
