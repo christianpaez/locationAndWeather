@@ -19,7 +19,7 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MapComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
