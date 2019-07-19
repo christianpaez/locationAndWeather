@@ -1,18 +1,33 @@
 
            <!-- weather -->
            <section class="callout">
+              <div class="container text-center">
+                  
+                </div>
                 <div class="container text-center">
                   <div class="row">
                     <div class="col mx-auto">
-                      <p class="lead mb-5">Weather Forecast</p>
-                                <h1 class="mb-5">Zagreb, Croatia</h1>
-                      <p class="lead mb-5">"Thunderstorms in the area this afternoon through this evening"</p>
-                      <p class="lead mb-5"><i class="fas fa-cloud-sun fa-10x"></i></p>
+                        <h3 class="mb-4">Press the button to check your weather forecast!</h3>
+                  <button class="btn btn-info btn-xl" 
+                  (click) = "getLocation()">Get Weather Info</button>
+                      
+                          <h1 class="mb-5">{{city}}, {{country}}</h1>
+                      
+                                
+                      <p class="lead mb-5">"{{forecast}}"</p>
+
+                      <p class="lead mb-5">
+                        Day: <img src = {{dayIconUrl}}>
+                      </p>
+                      <p class="lead mb-5">
+                          Night: <img src = {{nightIconUrl}}>
+                        </p>
                       <h3 class="mb-5">Temperature</h3>
                       <p class="lead mb-5"><i class="fa fa-temperature-low" aria-hidden="true"></i>
-                        Min: 20°C  &nbsp; -  &nbsp;<i class="fa fa-temperature-high" aria-hidden="true"></i>Max 40°C</p>
+                        Min: {{minTemp}}°{{metric}}  &nbsp; -  &nbsp;<i
+                         class="fa fa-temperature-high" aria-hidden="true"></i>Max {{maxTemp}}°{{metric}}</p>
              
-                       <a class="btn btn-info btn-xl js-scroll-trigger" href="#services">Full forecast on Accuweather.com</a>
+                       <a class="btn btn-info btn-xl js-scroll-trigger" target = "_blank" href={{url}}>Full forecast on Accuweather.com</a>
                     </div>
                   </div>
                 </div>

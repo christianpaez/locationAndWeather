@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MapComponent } from '../map/map.component';
+import { WeatherComponent } from '../weather/weather.component';
+
 
 
 @Component({
@@ -31,14 +33,13 @@ export class BodyComponent implements OnInit {
     }
     
     navigator.geolocation.getCurrentPosition((position: Position) => {
-        console.log("Latitude: " + position.coords.latitude +
-          "Longitude: " + position.coords.longitude); 
+          let lat =  position.coords.latitude;
+          let lon =  position.coords.longitude;
           this.mapInfo.locating = false;
-          this.mapInfo.latitude = position.coords.latitude;
-          this.mapInfo.longitude = position.coords.longitude;     
+          this.mapInfo.latitude = lat;
+          this.mapInfo.longitude = lon;     
           this.mapInfo.mapReady = true;
-
-          this.mapComponent.leafletMap(position.coords.latitude, position.coords.longitude);
+          this.mapComponent.leafletMap(lat, lon);
   
     },(error: PositionError) => {console.log(error)
                                 this.mapInfo.positionError = true;

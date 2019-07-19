@@ -39,8 +39,6 @@ export class MapComponent implements OnInit {
       accessToken: 'pk.eyJ1IjoiY2hyaXN0aWFuMTg5NCIsImEiOiJjank3ZHM2Z2cwczZjM2RvMGxibXQzcng3In0.YUUKGnntHpUmPSdVuFQ-ww'
   }).addTo(mymap);
 
-  var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
 var popup = L.popup()
     .setLatLng([lat, lon])
     .setContent("You are here.")
